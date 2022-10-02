@@ -21,6 +21,7 @@ main{
 .diapo{
     position: relative;
     overflow: hidden;
+
     color: white;
     background-color: rgb(0, 0, 0);
     border-bottom-left-radius: 100px;
@@ -50,9 +51,12 @@ main{
 }
 
 .element{
+    /* display: flex; */
     display: none;
     flex: 1 0 100%;
     position: relative;
+    /* margin-left: 5%;
+    margin-right: 5%; */
 }
 
 .element figure{
@@ -62,7 +66,6 @@ main{
 
 .element .imgPlanet{
     width: 300px;
-    height: 300px;
 }
 
 .nbPosition{
@@ -76,10 +79,10 @@ main{
 .infosPlanet{
     display: flex;
     flex-direction: column;
-    /* height: 230px; */
+    height: 230px; /*230px itnitialement*/
     font-size: 0.9em;
     margin-top: 3%;
-    padding: 20px 20px 80px 20px;
+    padding-right: 10% ;
 }
 
 .infosPlanet h2{
@@ -121,7 +124,10 @@ main{
 /* The dots/bullets/indicators */
 .dot {
     cursor: pointer;
+    /* height: 15px;
+    width: 15px; */
     margin: 50px 50px 0px 50px;
+    /* background-color: #bbb; */
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
@@ -133,7 +139,7 @@ main{
     font-size: 1.1em;
 }
 
-/* Résolution pour téléphone */
+
 
 @media screen and (min-width : 320px) and (max-width : 424px){
 
@@ -142,19 +148,17 @@ main{
     }
 
     .diapo{
-        /* display: flex;
-        flex-direction: column;
-        justify-content: space-evenly; */
-        /* height: 750px; */
+        height: 850px;
         position: relative;
         overflow: hidden;
+    
         color: white;
         padding: 0;
     }
 
     #nav-right, #nav-left{
         position: absolute;
-        top: 290px;
+        top: 25%;
         transform: translateY(-50%);
         color: white;
         font-size: 3em;
@@ -171,21 +175,33 @@ main{
         margin: auto;
     }
 
+    .element img{
+        margin-top: 70px;
+    }
+
     .nbPosition{
         font-size: xx-large;
         color: rgba(255, 255, 255, 0.20);
         font-weight: bold;
-        margin: -280px auto 230px auto;
-
+        margin: auto;
+        margin: -330px auto 50px auto;
+        /* margin-bottom: 40px;
+        margin-top: -50px; */
+        /* display: none; */
+        
     }
-    
+
+    .blockDescriptionAndDetail{
+        margin-top: 180px;
+    }
+
     .infosPlanet{
         display: flex;
         flex-direction: column;
-        /* height: 230px; */
+        height: 230px; /*230px itnitialement*/
         font-size: 0.9em;
         margin-top: 0;
-        padding: 20px 20px 80px 20px;
+        padding-right: 0 ;
 
     }
 
@@ -208,8 +224,7 @@ main{
         flex-direction: column;
         width: 80%;
         margin: auto;
-        /* background-color: rgb(53, 53, 53); */
-        margin-bottom: 0px;
+   
     }
 
     .moreDetail p{
@@ -218,8 +233,7 @@ main{
     }
 
     .dots{
-        margin: 40px 0 20px 0;
-        display: none;
+        margin: 300px 0 10% 0;
     }
 
     .dot {
@@ -231,199 +245,3 @@ main{
     }
 
 }
-
-
-/* Résolution pour téléphone paysage */
-
-@media screen and (min-width : 425px) and (max-width : 768px){
-
-    main{
-        width: 100%;  
-    }
-
-    .diapo{
-        padding: 0;
-    }
-
-    #nav-right, #nav-left{
-        top: 270px;
-    }
-
-    .element{
-        flex-direction: column;
-    }
-
-    .element figure{
-        flex-direction: column;
-        padding-left: 0px;
-        margin: auto;
-    }
-
-    .nbPosition{
-        font-size: xx-large;
-        margin: -280px auto 230px auto;
-    }
-
-    .infosPlanet{
-        /* height: 230px; */
-        margin-top: 0;
-        padding: 20px 20px 20px 20px;
-
-    }
-
-    .infosPlanet h2{
-        margin: -70px auto 10px;
-    }
-
-    .descriptionPlanet{
-        margin: 5% auto;
-    }
-
-    .moreDetail{
-        width: 80%;
-        margin: auto;
-        margin: 5px auto 0px;
-    }
-
-    .dots{
-        width: 80%;
-        margin: 20px auto;
-    }
-
-    .dot {
-        cursor: pointer;
-        margin: 10px 9px;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.6s ease;
-    }
-
-}
-
-/* Résolution pour tablette */
-
-@media screen and (min-width : 769px) and (max-width : 1024px){
-
-    main{
-        width: 95%;  
-    }
-
-    .diapo{
-        padding: 0;
-    }
-
-    .element figure{
-        padding-left: 0px;
-        margin: auto;
-    }
-
-    .nbPosition{
-        position: absolute;
-        top: 30px;
-        left: 310px; 
-    }
-
-    .infosPlanet{
-        padding: 20px 20px 20px 10px; 
-        position: relative;
-    }
-
-    .infosPlanet h2{
-        margin: 0px 70px 10px;
-    }
-
-    .moreDetail{
-        margin: 25px 0px 0px;
-    }
-
-    .dots{
-        margin: 20px auto;
-    }
-
-    .dot {
-        cursor: pointer;
-        margin: 10px 8px;
-    }
-
-    body{
-        background-color: rgb(25, 0, 255);
-    }
-
-}
-
-/* Résolution pour les ordinateurs portables */
-
-@media screen and (min-width : 1025px) and (max-width : 1439px){
-
-    main{
-        width: 90%;  
-    }
-
-    .nbPosition{
-        margin-top: -10px;
-    }
-
-    .infosPlanet{
-        padding: 0px 20px 20px 0px; 
-    }
-
-    .infosPlanet h2{
-        margin: 0px;
-    }
-
-    .blockDescriptionAndDetail{
-        margin-bottom: 50px;
-    }
-
-    .moreDetail{
-        margin: 0px 0px 0px;
-    }
-
-    .dots{
-        margin: 10px auto 20px;
-    }
-
-    .dot {
-        cursor: pointer;
-        margin: 10px 15px;
-    }
-
-    body{
-        background-color: rgb(255, 0, 191);
-    }
-
-}
-
-/* Résolution pour écrans d'ordinateur classique */
-
-@media screen and (min-width : 1440px) and (max-width : 1980px){
-
-    .dots{
-        margin: 10px auto 20px;
-    }
-
-    .dot {
-        cursor: pointer;
-        margin: 10px 25px;
-    }
-
-    body{
-        background-color: aqua;
-    }
-
-}
-
-/* Résolution pour ecrans d'ordinateur 2k  */
-
-@media screen and (min-width : 1981px) and (max-width : 2560px){
-
-
-    body{
-        background-color: rgb(195, 0, 255);
-    }
-
-}
-    
-
-
-

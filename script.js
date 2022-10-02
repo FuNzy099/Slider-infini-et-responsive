@@ -28,25 +28,6 @@ window.onload = () => {
 
 
     /*
-        On clone la première image pour ce faire, nous allons chercher la première image enfant de elements et on le clone
-
-        DOCUMENTATION : 
-            firstElementChild : https://developer.mozilla.org/fr/docs/Web/API/Element/firstElementChild
-            cloneNode : https://developer.mozilla.org/fr/docs/Web/API/Node/cloneNode
-    */
-    let firstImage = elements.firstElementChild.cloneNode(true);
-
-    
-    /*
-        On injecte le clone à la fin du diapo, avec la méthode appendChild() elle permet d'ajouter in noeud à la fin de la list des enfants d'un noeud parent spécifié
-
-        DOCUMENTATION : 
-            appenChilf : https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild
-    */
-    elements.appendChild(firstImage);
-
-
-    /*
        On récupère la largeur d'une slide à l'aide de la méthode getBoundingClientRect() 
        Elle retourne un objet en fournissant des informations sur la taille d'un élément et sa position par rapport à la zone d'affichage
 
@@ -67,8 +48,13 @@ window.onload = () => {
         addEventListener est une méthode permetant de configurer une fonction qui sera appelée  chaque fois que l'évènement sera livré à la cible
         DOCUMENTATION : https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     */
-    next.addEventListener('click', slideNext)
-    prev.addEventListener('click', slidePrev)
+    next.addEventListener("click", ()=>{
+        plusSlides(1)
+    })
+
+    prev.addEventListener("click", ()=>{
+        plusSlides(-1)
+    })
 
 
     /*
@@ -77,7 +63,7 @@ window.onload = () => {
         setInterval() est une méthode qui permet de répéter une fonction ou d'exécuter un extrait de code à interval régulier
         DOCUMENTATION : https://developer.mozilla.org/en-US/docs/Web/API/setInterval
     */
-    timer = setInterval(slideNext, 10000);
+    timer = setInterval(showSlides, 3000);
 
 
     /*
@@ -88,50 +74,10 @@ window.onload = () => {
     */
     diapo.addEventListener("mouseover", stopTimer);
     diapo.addEventListener("mouseout", startTimer);
-}
 
-/**
- * Cette fonction fait défiler le diaporama vers la droite
- */
-function slideNext() {
-    // Permet d'incrémenter le compteur
-    compteur++;
-    elements.style.transition = "0.8s linear";
-
-    let decal = -slideWidth * compteur;
-    elements.style.transform = `translateX(${decal}px)`;
-
-    // On attend la fin de la transition et on "rembobine" de façon cachée
-    setTimeout(function () {
-        if (compteur >= slides.length - 0.8) {
-            compteur = 0;
-            elements.style.transition = "unset";
-            elements.style.transform = "translateX(0)";
-        }
-    }, 800);
-}
-
-/**
- * Cette fonction fait défiler le diaporama vers la gauche
- */
-function slidePrev() {
-    // Permet de décrémente le compteur
-    compteur--;
-    elements.style.transition = "0.8s linear";
-
-    // On verifie si on est à la 1er slide
-    if (compteur < 0) {
-        compteur = slides.length - 0;
-        let decal = -slideWidth * compteur;
-        elements.style.transition = "unset";
-        elements.style.transform = `translateX(${decal}px)`;
-        setTimeout(slidePrev, 1);
-    }
-
-    let decal = -slideWidth * compteur;
-    elements.style.transform = `translateX(${decal}px)`;
 
 }
+
 
 
 // Function pour start le timer quand la souris ne survol plus le slider
@@ -142,44 +88,51 @@ function stopTimer() {
 
 // Function pour rénitialiser le timer
 function startTimer() {
-    timer = setInterval(slideNext, 10000);
+    timer = setInterval(showSlides);
 }
 
 
 
+                                            // PARTIE CORESPONDANT AU DOTS
 
-
-
-
+// On déclare slideIndex qui correspond à la premiere image du slider
 let slideIndex = 1;
 showSlides(slideIndex);
 
-// Next/previous controls
+
+// Function permettant de défiler vers la droite ou la gauche en cliquant sur les flèches
 function plusSlides(n) {
     showSlides(slideIndex += n);
 }
+plusSlides;
 
-
-// Thumbnail image controls
 function currentSlide(n) {
-  showSlides(slideIndex = n);
+    showSlides(slideIndex = n);
 }
+currentSlide;
+
+
 
 function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("element");
 
-  console.log(slides)
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "flex";
-  dots[slideIndex-1].className += " active";
+    let i;
+    let slides = document.getElementsByClassName("element");
+
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+     
+    slides[slideIndex-1].style.display = "flex";
+    dots[slideIndex-1].className += " active";
+
+    // clearTimeout(timer);
+    // timer = setTimeout(() => plusSlides(1), 3000)
 }
 
+    
