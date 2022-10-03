@@ -11,6 +11,7 @@ window.onload = () => {
         La méthode querySelector() retourne le premier element dans le document correspondant au sélecteur, ici à l'occurence .diapo
     */
     const diapo = document.querySelector(".diapo");
+    const dots = document.querySelector(".dotsClick")
 
 
     // On récupère le conteneur de tous les éléments
@@ -24,8 +25,8 @@ window.onload = () => {
             Array.from : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/from
             .children : https://developer.mozilla.org/fr/docs/Web/API/Element/children
     */
-    slides = Array.from(elements.children);
-
+    slides = Array.from(elements.children);  // tableau contenant toutes les sliders
+    dotsPlanets = Array.from(dots.children); // Tableau contenant toutes les planetes
 
     /*
        On récupère la largeur d'une slide à l'aide de la méthode getBoundingClientRect() 
@@ -74,7 +75,21 @@ window.onload = () => {
     */
     diapo.addEventListener("mouseover", stopTimer);
     diapo.addEventListener("mouseout", startTimer);
+    // dots.addEventListener('mouseover', stopTimer )
 
+    
+    let nextClick = document.querySelector("#nav-right");
+    nextClick.addEventListener("click", stopTimer);
+
+    let prevClick = document.querySelector("#nav-left");
+    prevClick.addEventListener("click", stopTimer);
+    
+
+    for (i = 0; i < dotsPlanets.length; i++) {
+     
+        dotsPlanets = document.querySelector('.dotsClick')
+        dotsPlanets.addEventListener('click', stopTimer)
+    }
 
 }
 
@@ -89,6 +104,8 @@ function stopTimer() {
 // Function pour rénitialiser le timer
 function startTimer() {
     timer = setInterval(showSlides);
+   
+
 }
 
 
@@ -103,6 +120,7 @@ showSlides(slideIndex);
 // Function permettant de défiler vers la droite ou la gauche en cliquant sur les flèches
 function plusSlides(n) {
     showSlides(slideIndex += n);
+   
 }
 plusSlides;
 
@@ -119,8 +137,13 @@ function showSlides(n) {
     let slides = document.getElementsByClassName("element");
 
     let dots = document.getElementsByClassName("dot");
+
+    // Quand le slider arrive à la derniere image on recommence à la premiere (défilement automatique ou manuel)
     if (n > slides.length) {slideIndex = 1}
+    
+    // Quand le slider arrive à la premiere image on recommence à la derniere (défillement manuel)
     if (n < 1) {slideIndex = slides.length}
+    
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
@@ -131,8 +154,11 @@ function showSlides(n) {
     slides[slideIndex-1].style.display = "flex";
     dots[slideIndex-1].className += " active";
 
-    // clearTimeout(timer);
-    // timer = setTimeout(() => plusSlides(1), 3000)
-}
+    clearTimeout(timer);
+    timer = setTimeout(() => plusSlides(1), 10000)
 
+
+
+    
+}
     
