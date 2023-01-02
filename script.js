@@ -156,9 +156,6 @@ function showSlides(n) {
 
     clearTimeout(timer);
     timer = setTimeout(() => plusSlides(1), 10000)
-
-
-
     
 }
     
