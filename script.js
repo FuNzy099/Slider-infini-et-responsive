@@ -155,7 +155,7 @@ function showSlides(n) {
     dots[slideIndex-1].className += " active";
 
     clearTimeout(timer);
-    timer = setTimeout(() => plusSlides(1), 10000)
+    timer = setTimeout(() => plusSlides(1), 3000)
     
 }
     
